@@ -4,6 +4,9 @@
 학과: SW융합대학 컴퓨터공학과  
 이름: 이철민  
 
+원본 Git Repo:
+- https://github.com/graspnet/graspnet-baseline.git
+
 ## Requirements
 - Python 3
 - PyTorch 1.6
