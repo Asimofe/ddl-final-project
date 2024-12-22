@@ -1,0 +1,3 @@
+Checkpoint: ./logs/log_rs/checkpoint_2epoch.tar
+Average Loss: 1.4096
+Average Grasp Score: 0.4754

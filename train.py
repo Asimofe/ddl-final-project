@@ -23,6 +23,8 @@ from pytorch_utils import BNMomentumScheduler
 from graspnet_dataset import GraspNetDataset, collate_fn, load_grasp_labels
 from label_generation import process_grasp_labels
 
+import wandb
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset_root', required=True, help='Dataset root')
 parser.add_argument('--camera', required=True, help='Camera split [realsense/kinect]')
@@ -39,6 +41,21 @@ parser.add_argument('--bn_decay_rate', type=float, default=0.5, help='Decay rate
 parser.add_argument('--lr_decay_steps', default='8,12,16', help='When to decay the learning rate (in epochs) [default: 8,12,16]')
 parser.add_argument('--lr_decay_rates', default='0.1,0.1,0.1', help='Decay rates for lr decay [default: 0.1,0.1,0.1]')
 cfgs = parser.parse_args()
+
+# wandb initialize
+wandb.init(
+    project = "GraspNet-Training",
+    name = f"GraspNet_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}",
+    config = {
+        "learning_rate": cfgs.learning_rate,
+        "batch_size": cfgs.batch_size,
+        "max_epoch": cfgs.max_epoch,
+        "weight_decay": cfgs.weight_decay,
+        "dataset_root": cfgs.dataset_root,
+        "camera": cfgs.camera
+    }
+)
+
 
 # ------------------------------------------------------------------------- GLOBAL CONFIG BEG
 EPOCH_CNT = 0
@@ -153,7 +170,13 @@ def train_one_epoch():
             log_string(' ---- batch: %03d ----' % (batch_idx+1))
             for key in sorted(stat_dict.keys()):
                 TRAIN_WRITER.add_scalar(key, stat_dict[key]/batch_interval, (EPOCH_CNT*len(TRAIN_DATALOADER)+batch_idx)*cfgs.batch_size)
-                log_string('mean %s: %f'%(key, stat_dict[key]/batch_interval))
+                
+                # add wandb.log()
+                mean_value = stat_dict[key] / batch_interval
+                wandb.log({f'train/{key}': mean_value})
+                
+                log_string('mean %s: %f'%(key, mean_value))
+                # log_string('mean %s: %f'%(key, stat_dict[key]/batch_interval))
                 stat_dict[key] = 0
 
 def evaluate_one_epoch():
@@ -186,7 +209,13 @@ def evaluate_one_epoch():
 
     for key in sorted(stat_dict.keys()):
         TEST_WRITER.add_scalar(key, stat_dict[key]/float(batch_idx+1), (EPOCH_CNT+1)*len(TRAIN_DATALOADER)*cfgs.batch_size)
-        log_string('eval mean %s: %f'%(key, stat_dict[key]/(float(batch_idx+1))))
+        
+        # add wandb.log()
+        mean_value = stat_dict[key] / (float(batch_idx+1))
+        wandb.log({f'test/{key}': mean_value})
+        
+        log_string('eval mean %s: %f'%(key, mean_value))
+        # log_string('eval mean %s: %f'%(key, stat_dict[key]/(float(batch_idx+1))))
 
     mean_loss = stat_dict['loss/overall_loss']/float(batch_idx+1)
     return mean_loss
@@ -216,7 +245,13 @@ def train(start_epoch):
             save_dict['model_state_dict'] = net.module.state_dict()
         except:
             save_dict['model_state_dict'] = net.state_dict()
-        torch.save(save_dict, os.path.join(cfgs.log_dir, 'checkpoint.tar'))
-
+        
+        # add wandb.save() after saving checkpoint
+        checkpoint_path = os.path.join(cfgs.log_dir, 'checkpoint.tar')
+        torch.save(save_dict, checkpoint_path)
+        # torch.save(save_dict, os.path.join(cfgs.log_dir, 'checkpoint.tar'))
+        wandb.save(checkpoint_path)
+        
 if __name__=='__main__':
-    train(start_epoch)
+    train(start_epoch)     
+    

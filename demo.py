@@ -111,6 +111,38 @@ def vis_grasps(gg, cloud):
     grippers = gg.to_open3d_geometry_list()
     o3d.visualization.draw_geometries([cloud, *grippers])
 
+def vis_grasps_backup(gg, cloud, save_path='./result/grasp_result.png'):
+    gg.nms()
+    gg.sort_by_score()
+    gg = gg[:50]
+    grippers = gg.to_open3d_geometry_list()
+
+    # Set up visualization
+    vis = o3d.visualization.Visualizer()
+    vis.create_window(visible=False)  # 창을 띄우지 않도록 설정
+    vis.add_geometry(cloud)
+    for gripper in grippers:
+        vis.add_geometry(gripper)
+
+    # Render the scene
+    vis.poll_events()
+    vis.update_renderer()
+
+    # Capture the rendered scene as an image
+    image = vis.capture_screen_float_buffer(do_render=True)
+    
+    # Convert float buffer to uint8 image
+    image = np.asarray(image)
+    image_uint8 = (255 * image).astype(np.uint8)
+
+    # Save the image
+    Image.fromarray(image_uint8).save(save_path)
+    print(f"Grasp visualization saved to {save_path}")
+
+    # Close the visualizer
+    vis.destroy_window()
+
+
 def demo(data_dir):
     net = get_net()
     end_points, cloud = get_and_process_data(data_dir)

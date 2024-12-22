@@ -21,12 +21,28 @@ from loss import get_loss
 from loss_utils import GRASP_MAX_WIDTH, GRASP_MAX_TOLERANCE
 from label_generation import process_grasp_labels, match_grasp_view_and_label, batch_viewpoint_params_to_matrix
 
+# add pruning module
+import torch.nn.utils.prune as prune
+
+
 
 class GraspNetStage1(nn.Module):
     def __init__(self, input_feature_dim=0, num_view=300):
         super().__init__()
         self.backbone = Pointnet2Backbone(input_feature_dim)
         self.vpmodule = ApproachNet(num_view, 256)
+        
+        self.apply_pruning()
+        
+    # add pruning
+    def apply_pruning(self):
+        for module in self.backbone.modules():
+            if isinstance(module, nn.Conv1d) or isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
+                prune.l1_unstructured(module, name='weight', amount=0.2)
+        for module in self.vpmodule.modules():
+            if isinstance(module, nn.Conv1d) or isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
+                prune.l1_unstructured(module, name='weight', amount=0.2)  
+
 
     def forward(self, end_points):
         pointcloud = end_points['point_clouds']
@@ -44,6 +60,18 @@ class GraspNetStage2(nn.Module):
         self.crop = CloudCrop(64, 3, cylinder_radius, hmin, hmax_list)
         self.operation = OperationNet(num_angle, num_depth)
         self.tolerance = ToleranceNet(num_angle, num_depth)
+    
+    # add pruning
+        self.apply_pruning()
+
+    def apply_pruning(self):
+        """OperationNet 및 ToleranceNet의 Conv 및 FC 계층에 Pruning 적용"""
+        for module in self.operation.modules():
+            if isinstance(module, nn.Conv1d) or isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
+                prune.l1_unstructured(module, name='weight', amount=0.2)  # 20% Pruning
+        for module in self.tolerance.modules():
+            if isinstance(module, nn.Conv1d) or isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
+                prune.l1_unstructured(module, name='weight', amount=0.2)  # 20% Pruning
     
     def forward(self, end_points):
         pointcloud = end_points['input_xyz']
