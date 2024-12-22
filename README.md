@@ -85,6 +85,9 @@ GraspNet은 복잡한 장면에서의 물제 grasp 문제를 해결하기 위한
 grasp 견고성을 높이기 위해 새로운 grasp affinity field를 설계하였다.  
 
 이 모델은 PoineNet을 백본으로 사용하고 있으며 구조는 다음과 같다.  
-![GraspNet 모델 구조](./images/graspnet_model_image.png)
+![GraspNet 모델 구조](./doc/teaser.png)
 
 학습 시 L1 Unstructed Pruning을 적용하여 모델 경량화를 진행해보고 적용하지 않았을 때와 성능을 비교해본다.  
+  
+![Pruning 이후 0이 아닌 weight 분포](./weight_plots/pruned_nonzero_weights.png)
+
