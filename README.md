@@ -1,19 +1,8 @@
-# GraspNet Baseline
-Baseline model for "GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping" (CVPR 2020).
-
-[[paper](https://openaccess.thecvf.com/content_CVPR_2020/papers/Fang_GraspNet-1Billion_A_Large-Scale_Benchmark_for_General_Object_Grasping_CVPR_2020_paper.pdf)]
-[[dataset](https://graspnet.net/)]
-[[API](https://github.com/graspnet/graspnetAPI)]
-[[doc](https://graspnetapi.readthedocs.io/en/latest/index.html)]
-
-<div align="center">    
-    <img src="https://github.com/chenxi-wang/materials/blob/master/graspnet-baseline/doc/gifs/scene_0114.gif", width="240", alt="scene_0114" />
-    <img src="https://github.com/chenxi-wang/materials/blob/master/graspnet-baseline/doc/gifs/scene_0116.gif", width="240", alt="scene_0116" />
-    <img src="https://github.com/chenxi-wang/materials/blob/master/graspnet-baseline/doc/gifs/scene_0117.gif", width="240", alt="scene_0117" />
-    <br> Top 50 grasps detected by our baseline model.
-</div>
-
-![teaser](doc/teaser.png)
+# distributed-deep-learning-final-project
+2024-2 빅데이터기반 분산-딥러닝 혁신 프로젝트  
+프로젝트 제목: Distributed Training을 통한 GraspNet 모델 학습 속도 향상  
+학과: SW융합대학 컴퓨터공학과  
+이름: 이철민  
 
 ## Requirements
 - Python 3
@@ -26,107 +15,73 @@ Baseline model for "GraspNet-1Billion: A Large-Scale Benchmark for General Objec
 - tqdm
 
 ## Installation
-Get the code.
-```bash
-git clone https://github.com/graspnet/graspnet-baseline.git
-cd graspnet-baseline
+1. conda 가상환경 생성
 ```
-Install packages via Pip.
-```bash
-pip install -r requirements.txt
+conda create -n graspnet python==3.7.9
+conda activate graspnet
 ```
-Compile and install pointnet2 operators (code adapted from [votenet](https://github.com/facebookresearch/votenet)).
-```bash
+2. git clone
+```
+git clone https://github.com/Asimofe/distributed-deep-learning-final-project.git
+cd distributed-deep-learning-final-project
+```
+3. pip를 통해 packages 설치
+```
+pip install -r requirments.txt
+```
+4. PointNet2, knn 연산자 컴파일 및 설치
+```
 cd pointnet2
 python setup.py install
-```
-Compile and install knn operator (code adapted from [pytorch_knn_cuda](https://github.com/chrischoy/pytorch_knn_cuda)).
-```bash
-cd knn
+
+cd ../knn
 python setup.py install
 ```
-Install graspnetAPI for evaluation.
-```bash
+5. evaluation을 위한 graspnetAPI 설치
+```
+cd ..
 git clone https://github.com/graspnet/graspnetAPI.git
 cd graspnetAPI
 pip install .
 ```
-
-## Tolerance Label Generation
-Tolerance labels are not included in the original dataset, and need additional generation. Make sure you have downloaded the orginal dataset from [GraspNet](https://graspnet.net/). The generation code is in [dataset/generate_tolerance_label.py](dataset/generate_tolerance_label.py). You can simply generate tolerance label by running the script: (`--dataset_root` and `--num_workers` should be specified according to your settings)
-```bash
+6. Dataset 설치  
+다음 링크를 참고하여 설치
+- https://graspnet.net/
+7. Tolerance label 생성
+```
 cd dataset
 sh command_generate_tolerance_label.sh
 ```
-
-Or you can download the tolerance labels from [Google Drive](https://drive.google.com/file/d/1DcjGGhZIJsxd61719N0iWA7L6vNEK0ci/view?usp=sharing)/[Baidu Pan](https://pan.baidu.com/s/1HN29P-csHavJF-R_wec6SQ) and run:
-```bash
-mv tolerance.tar dataset/
-cd dataset
-tar -xvf tolerance.tar
+## Train and evaluate
+1. Pruning 적용 전 모델 학습
+```
+bash command_train.sh
+```
+2. Pruning 적용 후 모델 학습
+```
+bash command_train_pruned.sh
+```
+3. Pruning 적용 전 모델 평가
+```
+bash command_eval_origin.sh
+```
+4. Pruning 적용 전 모델 평가
+```
+bash command_eval_pruned.sh
+```
+5. 모델 희소성, 파라미터 수, 모델 크기 분석
+```
+python metric_check.py
 ```
 
-## Training and Testing
-Training examples are shown in [command_train.sh](command_train.sh). `--dataset_root`, `--camera` and `--log_dir` should be specified according to your settings. You can use TensorBoard to visualize training process.
+## 프로젝트 설명
+GraspNet은 복잡한 장면에서의 물제 grasp 문제를 해결하기 위한 학습데이터와 평가기준의 부재를 해결하기 위해  
+97,280개의 RGB-D 이미지와 10억개 이상의 grasp pose를 포함한 대규모 데이터셋과 통합 평가 시스템을 제공한다.  
 
-Testing examples are shown in [command_test.sh](command_test.sh), which contains inference and result evaluation. `--dataset_root`, `--camera`, `--checkpoint_path` and `--dump_dir` should be specified according to your settings. Set `--collision_thresh` to -1 for fast inference.
+제안된 네트워크는 point cloud를 입력으로 하여 grasp pose 예측하며 접근 방향과 동작 매개변수를 분리하여 학습하고,  
+grasp 견고성을 높이기 위해 새로운 grasp affinity field를 설계하였다.  
 
-The pretrained weights can be downloaded from:
+이 모델은 PoineNet을 백본으로 사용하고 있으며 구조는 다음과 같다.  
+![GraspNet 모델 구조](./images/graspnet_model_image.png)
 
-- `checkpoint-rs.tar`
-[[Google Drive](https://drive.google.com/file/d/1hd0G8LN6tRpi4742XOTEisbTXNZ-1jmk/view?usp=sharing)]
-[[Baidu Pan](https://pan.baidu.com/s/1Eme60l39tTZrilF0I86R5A)]
-- `checkpoint-kn.tar`
-[[Google Drive](https://drive.google.com/file/d/1vK-d0yxwyJwXHYWOtH1bDMoe--uZ2oLX/view?usp=sharing)]
-[[Baidu Pan](https://pan.baidu.com/s/1QpYzzyID-aG5CgHjPFNB9g)]
-
-`checkpoint-rs.tar` and `checkpoint-kn.tar` are trained using RealSense data and Kinect data respectively.
-
-## Demo
-A demo program is provided for grasp detection and visualization using RGB-D images. You can refer to [command_demo.sh](command_demo.sh) to run the program. `--checkpoint_path` should be specified according to your settings (make sure you have downloaded the pretrained weights, we recommend the realsense model since it might transfer better). The output should be similar to the following example:
-
-<div align="center">    
-    <img src="doc/example_data/demo_result.png", width="480", alt="demo_result" />
-</div>
-
-__Try your own data__ by modifying `get_and_process_data()` in [demo.py](demo.py). Refer to [doc/example_data/](doc/example_data/) for data preparation. RGB-D images and camera intrinsics are required for inference. `factor_depth` stands for the scale for depth value to be transformed into meters. You can also add a workspace mask for denser output.
-
-## Results
-Results "In repo" report the model performance with single-view collision detection as post-processing. In evaluation we set `--collision_thresh` to 0.01.
-
-Evaluation results on RealSense camera:
-|          |        | Seen             |                  |        | Similar          |                  |        | Novel            |                  | 
-|:--------:|:------:|:----------------:|:----------------:|:------:|:----------------:|:----------------:|:------:|:----------------:|:----------------:|
-|          | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> |
-| In paper | 27.56  | 33.43            | 16.95            | 26.11  | 34.18            | 14.23            | 10.55  | 11.25            | 3.98             |
-| In repo  | 47.47  | 55.90            | 41.33            | 42.27  | 51.01            | 35.40            | 16.61  | 20.84            | 8.30             |
-
-Evaluation results on Kinect camera:
-|          |        | Seen             |                  |        | Similar          |                  |        | Novel            |                  | 
-|:--------:|:------:|:----------------:|:----------------:|:------:|:----------------:|:----------------:|:------:|:----------------:|:----------------:|
-|          | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> |
-| In paper | 29.88  | 36.19            | 19.31            | 27.84  | 33.19            | 16.62            | 11.51  | 12.92            | 3.56             |
-| In repo  | 42.02  | 49.91            | 35.34            | 37.35  | 44.82            | 30.40            | 12.17  | 15.17            | 5.51             |
-
-## Citation
-Please cite our paper in your publications if it helps your research:
-```
-@article{fang2023robust,
-  title={Robust grasping across diverse sensor qualities: The GraspNet-1Billion dataset},
-  author={Fang, Hao-Shu and Gou, Minghao and Wang, Chenxi and Lu, Cewu},
-  journal={The International Journal of Robotics Research},
-  year={2023},
-  publisher={SAGE Publications Sage UK: London, England}
-}
-
-@inproceedings{fang2020graspnet,
-  title={GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping},
-  author={Fang, Hao-Shu and Wang, Chenxi and Gou, Minghao and Lu, Cewu},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR)},
-  pages={11444--11453},
-  year={2020}
-}
-```
-
-## License
-All data, labels, code and models belong to the graspnet team, MVIG, SJTU and are freely available for free non-commercial use, and may be redistributed under these conditions. For commercial queries, please drop an email at fhaoshu at gmail_dot_com and cc lucewu at sjtu.edu.cn .
+학습 시 L1 Unstructed Pruning을 적용하여 모델 경량화를 진행해보고 적용하지 않았을 때와 성능을 비교해본다.  
