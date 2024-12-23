@@ -79,7 +79,7 @@ python metric_check.py
 ```
 
 ## 프로젝트 설명
-GraspNet은 복잡한 장면에서의 물제 grasp 문제를 해결하기 위한 학습데이터와 평가기준의 부재를 해결하기 위해  
+GraspNet은 그리퍼(gripper)가 장착된 로봇팔(robotic arm)을 사용하여 복잡한 장면에서의 물제 grasp 문제를 해결하기 위한 학습데이터와 평가기준의 부재를 해결하기 위해  
 97,280개의 RGB-D 이미지와 10억개 이상의 grasp pose를 포함한 대규모 데이터셋과 통합 평가 시스템을 제공한다.  
 
 제안된 네트워크는 point cloud를 입력으로 하여 grasp pose 예측하며 접근 방향과 동작 매개변수를 분리하여 학습하고,  
@@ -92,11 +92,11 @@ grasp 견고성을 높이기 위해 새로운 grasp affinity field를 설계하�
 
 
 ## 결과
-L1 Unstructed Pruning 적용 전 0이 아닌 weight 분포
+### L1 Unstructed Pruning 적용 전 0이 아닌 weight 분포
 ![Pruning 이전 0이 아닌 weight 분포](./weight_plots/original_nonzero_weights.png)
 Activation function으로 ReLU를 사용하기 때문에 Pruning을 적용하기 전이여도 이와같은 형태를 보이는 것으로 생각된다.
 
 
-L1 Unstructed Pruning 적용 후 0이 아닌 weight 분포  
+### L1 Unstructed Pruning 적용 후 0이 아닌 weight 분포  
 ![Pruning 이후 0이 아닌 weight 분포](./weight_plots/pruned_nonzero_weights.png)
 
