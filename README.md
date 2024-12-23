@@ -26,8 +26,8 @@ conda activate graspnet
 ```
 2. git clone
 ```
-git clone https://github.com/Asimofe/distributed-deep-learning-final-project.git
-cd distributed-deep-learning-final-project
+https://github.com/Asimofe/ddl-final-project.git
+cd ddl-final-project
 ```
 3. pip를 통해 packages 설치
 ```
