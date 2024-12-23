@@ -88,6 +88,14 @@ grasp 견고성을 높이기 위해 새로운 grasp affinity field를 설계하�
 ![GraspNet 모델 구조](./doc/teaser.png)
 
 학습 시 L1 Unstructed Pruning을 적용하여 모델 경량화를 진행해보고 적용하지 않았을 때와 성능을 비교해본다.  
-  
+
+
+## 결과
+L1 Unstructed Pruning 적용 전 0이 아닌 weight 분포
+![Pruning 이전 0이 아닌 weight 분포](./weight_plots/original_nonzero_weights.png)
+Activation function으로 ReLU를 사용하기 때문에 Pruning을 적용하기 전이여도 이와같은 형태를 보이는 것으로 생각된다.
+
+
+L1 Unstructed Pruning 적용 후 0이 아닌 weight 분포  
 ![Pruning 이후 0이 아닌 weight 분포](./weight_plots/pruned_nonzero_weights.png)
 
