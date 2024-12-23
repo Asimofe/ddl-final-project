@@ -67,28 +67,28 @@ def main():
            model.load_state_dict(checkpoint['model_state_dict'], strict=False)
        else:
            model.load_state_dict(checkpoint, strict=False)
-       print("✅ 원본 모델 가중치 로드 완료")
+       print("원본 모델 가중치 로드 완료")
        plot_weight_distribution(model, "Original Model", 
                               "weight_plots/original_weights.png")
        plot_weight_distribution(model, "Original Model (Non-zero weights only)", 
                               "weight_plots/original_nonzero_weights.png", 
                               count_nonzero_only=True)
    else:
-       print("❌ 원본 모델 체크포인트를 찾을 수 없습니다.")
+       print("원본 모델 체크포인트를 찾을 수 없습니다.")
    
    # Pruned 모델 가중치 분포 시각화
    if os.path.exists(pruned_checkpoint_path):
        model = GraspNet(input_feature_dim=0)
        checkpoint = torch.load(pruned_checkpoint_path, map_location='cpu')
        model.load_state_dict(checkpoint, strict=False)
-       print("✅ Pruned 모델 가중치 로드 완료")
+       print("Pruned 모델 가중치 로드 완료")
        plot_weight_distribution(model, "Pruned Model", 
                               "weight_plots/pruned_weights.png")
        plot_weight_distribution(model, "Pruned Model (Non-zero weights only)", 
                               "weight_plots/pruned_nonzero_weights.png", 
                               count_nonzero_only=True)
    else:
-       print("❌ Pruned 모델 체크포인트를 찾을 수 없습니다.")
+       print("Pruned 모델 체크포인트를 찾을 수 없습니다.")
 
 if __name__ == "__main__":
    main()
