@@ -1,0 +1,427 @@
+Weight Distribution Statistics - Original Model
+==================================================
+
+Layer: view_estimator.backbone.sa1.mlp_module.layer0.conv
+------------------------------
+mean: -0.012774
+std: 0.813585
+min: -1.832616
+max: 2.019493
+zeros_pct: 19.791668
+
+Layer: view_estimator.backbone.sa1.mlp_module.layer0.bn.bn
+------------------------------
+mean: 1.008263
+std: 0.272846
+min: 0.386069
+max: 1.599369
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa1.mlp_module.layer1.conv
+------------------------------
+mean: 0.002815
+std: 0.178110
+min: -0.612665
+max: 0.573539
+zeros_pct: 19.995117
+
+Layer: view_estimator.backbone.sa1.mlp_module.layer1.bn.bn
+------------------------------
+mean: 1.040603
+std: 0.414412
+min: 0.526422
+max: 2.877491
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa1.mlp_module.layer2.conv
+------------------------------
+mean: 0.001105
+std: 0.175866
+min: -0.633471
+max: 0.610201
+zeros_pct: 19.995117
+
+Layer: view_estimator.backbone.sa1.mlp_module.layer2.bn.bn
+------------------------------
+mean: 0.322784
+std: 0.135809
+min: 0.077872
+max: 0.702443
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa2.mlp_module.layer0.conv
+------------------------------
+mean: 0.000340
+std: 0.123673
+min: -0.515898
+max: 0.464672
+zeros_pct: 20.002386
+
+Layer: view_estimator.backbone.sa2.mlp_module.layer0.bn.bn
+------------------------------
+mean: 0.942907
+std: 0.381955
+min: 0.523556
+max: 2.509160
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa2.mlp_module.layer1.conv
+------------------------------
+mean: -0.001406
+std: 0.122870
+min: -0.495480
+max: 0.493516
+zeros_pct: 20.001221
+
+Layer: view_estimator.backbone.sa2.mlp_module.layer1.bn.bn
+------------------------------
+mean: 1.039364
+std: 0.358495
+min: 0.454054
+max: 2.161535
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa2.mlp_module.layer2.conv
+------------------------------
+mean: 0.001123
+std: 0.124597
+min: -0.531603
+max: 0.542663
+zeros_pct: 20.001221
+
+Layer: view_estimator.backbone.sa2.mlp_module.layer2.bn.bn
+------------------------------
+mean: 0.872835
+std: 0.306259
+min: 0.364777
+max: 2.111948
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa3.mlp_module.layer0.conv
+------------------------------
+mean: -0.000112
+std: 0.088011
+min: -0.337210
+max: 0.365551
+zeros_pct: 19.998793
+
+Layer: view_estimator.backbone.sa3.mlp_module.layer0.bn.bn
+------------------------------
+mean: 1.049361
+std: 0.168021
+min: 0.620908
+max: 1.594129
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa3.mlp_module.layer1.conv
+------------------------------
+mean: 0.001032
+std: 0.125658
+min: -0.487794
+max: 0.464209
+zeros_pct: 20.001221
+
+Layer: view_estimator.backbone.sa3.mlp_module.layer1.bn.bn
+------------------------------
+mean: 1.066925
+std: 0.178574
+min: 0.720241
+max: 1.556478
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa3.mlp_module.layer2.conv
+------------------------------
+mean: 0.001725
+std: 0.124390
+min: -0.497722
+max: 0.495779
+zeros_pct: 20.001221
+
+Layer: view_estimator.backbone.sa3.mlp_module.layer2.bn.bn
+------------------------------
+mean: 0.946383
+std: 0.160494
+min: 0.558316
+max: 1.414401
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa4.mlp_module.layer0.conv
+------------------------------
+mean: -0.000431
+std: 0.087372
+min: -0.390229
+max: 0.333912
+zeros_pct: 19.998793
+
+Layer: view_estimator.backbone.sa4.mlp_module.layer0.bn.bn
+------------------------------
+mean: 1.031633
+std: 0.194515
+min: 0.498458
+max: 1.769939
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa4.mlp_module.layer1.conv
+------------------------------
+mean: -0.001425
+std: 0.123727
+min: -0.512588
+max: 0.474690
+zeros_pct: 20.001221
+
+Layer: view_estimator.backbone.sa4.mlp_module.layer1.bn.bn
+------------------------------
+mean: 1.056744
+std: 0.204309
+min: 0.515013
+max: 1.734380
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.sa4.mlp_module.layer2.conv
+------------------------------
+mean: 0.000658
+std: 0.124661
+min: -0.495270
+max: 0.571362
+zeros_pct: 20.001221
+
+Layer: view_estimator.backbone.sa4.mlp_module.layer2.bn.bn
+------------------------------
+mean: 0.788449
+std: 0.159210
+min: 0.313060
+max: 1.210732
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.fp1.mlp.layer0.conv
+------------------------------
+mean: 0.000167
+std: 0.062320
+min: -0.286055
+max: 0.258836
+zeros_pct: 19.999695
+
+Layer: view_estimator.backbone.fp1.mlp.layer0.bn.bn
+------------------------------
+mean: 1.031025
+std: 0.184836
+min: 0.592689
+max: 1.545205
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.fp1.mlp.layer1.conv
+------------------------------
+mean: 0.000079
+std: 0.088221
+min: -0.354308
+max: 0.363780
+zeros_pct: 19.999695
+
+Layer: view_estimator.backbone.fp1.mlp.layer1.bn.bn
+------------------------------
+mean: 0.591724
+std: 0.099908
+min: 0.314695
+max: 0.867097
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.fp2.mlp.layer0.conv
+------------------------------
+mean: 0.000073
+std: 0.062241
+min: -0.268328
+max: 0.292647
+zeros_pct: 19.999695
+
+Layer: view_estimator.backbone.fp2.mlp.layer0.bn.bn
+------------------------------
+mean: 1.023855
+std: 0.120707
+min: 0.778476
+max: 1.340278
+zeros_pct: 0.000000
+
+Layer: view_estimator.backbone.fp2.mlp.layer1.conv
+------------------------------
+mean: 0.000175
+std: 0.088382
+min: -0.384608
+max: 0.395658
+zeros_pct: 19.999695
+
+Layer: view_estimator.backbone.fp2.mlp.layer1.bn.bn
+------------------------------
+mean: 0.987538
+std: 0.112570
+min: 0.612970
+max: 1.324937
+zeros_pct: 0.000000
+
+Layer: view_estimator.vpmodule.conv1
+------------------------------
+mean: -0.000025
+std: 0.035946
+min: -0.062498
+max: 0.062500
+zeros_pct: 19.999695
+
+Layer: view_estimator.vpmodule.conv2
+------------------------------
+mean: 0.000173
+std: 0.035943
+min: -0.062498
+max: 0.062500
+zeros_pct: 19.999483
+
+Layer: view_estimator.vpmodule.conv3
+------------------------------
+mean: 0.000023
+std: 0.033122
+min: -0.057543
+max: 0.057543
+zeros_pct: 20.000219
+
+Layer: view_estimator.vpmodule.bn1
+------------------------------
+mean: 0.959965
+std: 0.159496
+min: 0.540961
+max: 1.521648
+zeros_pct: 0.000000
+
+Layer: view_estimator.vpmodule.bn2
+------------------------------
+mean: 0.613396
+std: 0.180889
+min: 0.090790
+max: 1.105628
+zeros_pct: 0.000000
+
+Layer: grasp_generator.crop.mlps.layer0.conv
+------------------------------
+mean: -0.097534
+std: 0.943036
+min: -2.297888
+max: 2.870347
+zeros_pct: 0.000000
+
+Layer: grasp_generator.crop.mlps.layer0.bn.bn
+------------------------------
+mean: 1.027997
+std: 0.233841
+min: 0.497347
+max: 1.498571
+zeros_pct: 0.000000
+
+Layer: grasp_generator.crop.mlps.layer1.conv
+------------------------------
+mean: -0.044598
+std: 0.388847
+min: -2.936808
+max: 1.528338
+zeros_pct: 0.000000
+
+Layer: grasp_generator.crop.mlps.layer1.bn.bn
+------------------------------
+mean: 0.989221
+std: 0.210133
+min: 0.650368
+max: 1.652358
+zeros_pct: 0.000000
+
+Layer: grasp_generator.crop.mlps.layer2.conv
+------------------------------
+mean: -0.064490
+std: 0.372992
+min: -3.779767
+max: 2.190221
+zeros_pct: 0.000000
+
+Layer: grasp_generator.crop.mlps.layer2.bn.bn
+------------------------------
+mean: 1.035901
+std: 0.189318
+min: 0.493007
+max: 1.623268
+zeros_pct: 0.000000
+
+Layer: grasp_generator.operation.conv1
+------------------------------
+mean: 0.000194
+std: 0.036035
+min: -0.062495
+max: 0.062495
+zeros_pct: 20.001221
+
+Layer: grasp_generator.operation.conv2
+------------------------------
+mean: -0.000203
+std: 0.050860
+min: -0.088352
+max: 0.088386
+zeros_pct: 20.001221
+
+Layer: grasp_generator.operation.conv3
+------------------------------
+mean: 0.000028
+std: 0.050315
+min: -0.088377
+max: 0.088346
+zeros_pct: 20.008680
+
+Layer: grasp_generator.operation.bn1
+------------------------------
+mean: 1.035699
+std: 0.192255
+min: 0.709822
+max: 2.024405
+zeros_pct: 0.000000
+
+Layer: grasp_generator.operation.bn2
+------------------------------
+mean: 0.483607
+std: 0.130615
+min: 0.204590
+max: 0.898201
+zeros_pct: 0.000000
+
+Layer: grasp_generator.tolerance.conv1
+------------------------------
+mean: -0.000096
+std: 0.035900
+min: -0.062497
+max: 0.062496
+zeros_pct: 20.001221
+
+Layer: grasp_generator.tolerance.conv2
+------------------------------
+mean: -0.000219
+std: 0.050941
+min: -0.088377
+max: 0.088388
+zeros_pct: 20.001221
+
+Layer: grasp_generator.tolerance.conv3
+------------------------------
+mean: -0.001660
+std: 0.050153
+min: -0.087936
+max: 0.087851
+zeros_pct: 19.986980
+
+Layer: grasp_generator.tolerance.bn1
+------------------------------
+mean: 0.749918
+std: 0.343466
+min: 0.339553
+max: 2.093094
+zeros_pct: 0.000000
+
+Layer: grasp_generator.tolerance.bn2
+------------------------------
+mean: 0.483855
+std: 0.069679
+min: 0.244700
+max: 0.660587
+zeros_pct: 0.000000
+

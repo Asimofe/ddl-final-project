@@ -6,7 +6,7 @@ from graspnetAPI import GraspNet
 if __name__ == '__main__':
 
     ####################################################################
-    graspnet_root = '/home/clark/ex_storage/graspnet-baseline/data/clark_data'  ### ROOT PATH FOR GRASPNET ###
+    graspnet_root = '/home/clark/ex_storage/graspnet_dataset'  ### ROOT PATH FOR GRASPNET ###
     ####################################################################
 
     g = GraspNet(graspnet_root, 'kinect', 'all')
