@@ -8,6 +8,7 @@
 - https://github.com/graspnet/graspnet-baseline.git
 
 ## Requirements
+본 프로젝트는 Ubuntu 20.04.6 LTS, CUDA 11.3 버전에서 진행되었습니다.
 - Python 3
 - PyTorch 1.6
 - Open3d >=0.8
