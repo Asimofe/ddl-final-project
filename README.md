@@ -1,6 +1,6 @@
 # distributed-deep-learning-final-project
 2024-2 빅데이터기반 분산-딥러닝 혁신 프로젝트  
-프로젝트 제목: Distributed Training을 통한 GraspNet 모델 학습 속도 향상  
+프로젝트 제목: L1 Unstructured Pruning 통한 GraspNet 모델 경량화  
 학과: SW융합대학 컴퓨터공학과  
 이름: 이철민  
 
